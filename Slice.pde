@@ -9,13 +9,15 @@ class Slice {
   
   Slice(float _dist, float _spread) {
     rot = random(0, 360);
-    init(_dist, _spread);
+    dist = _dist;
+    spread = _spread;
+    init();
   }
   
-  void init(float _dist, float _spread) {
-    dist = random(_dist/1.1, _dist * 1.1);
-    spread = random(_spread/1.1, _spread * 1.1);
-    
+  void init() {
+    dist = random(dist/1.1, dist * 1.1);
+    spread = random(spread/1.1, spread * 1.1);
+    speed = random(0.1, 0.9);
     center = new PVector(width/2, height/2);
     root = new PVector(0,0);
     leftSpread = new PVector(0, 0);
@@ -34,7 +36,7 @@ class Slice {
     leftSpread = PVector.lerp(leftSpread, targetL, speed);
     rightSpread = PVector.lerp(rightSpread, targetR, speed);
     if (dist(targetC.x, targetC.y, peak.x, peak.y) < 2) {
-      init(dist, spread);
+      init();
     }
   }
     
